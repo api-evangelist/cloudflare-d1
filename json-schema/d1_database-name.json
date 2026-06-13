@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_database-name.json",
+  "title": "D1 Database Name",
+  "description": "D1 database name.",
+  "example": "my-database",
+  "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+  "type": "string",
+  "x-auditable": true
+}

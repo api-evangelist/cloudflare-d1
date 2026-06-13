@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_table-count.json",
+  "title": "D1 Table Count",
+  "description": "Schema for d1_table-count",
+  "example": 12,
+  "type": "number",
+  "x-auditable": true
+}

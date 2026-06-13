@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_read-replication-details-for-response.json",
+  "title": "D1 Read Replication Details For Response",
+  "description": "Configuration for D1 read replication.",
+  "properties": {
+    "mode": {
+      "description": "The read replication mode for the database. Mode 'auto' denotes that D1 creates replicas and automatically places them around the world. Mode 'disabled' denotes that no database replicas are used.",
+      "enum": [
+        "auto",
+        "disabled"
+      ],
+      "example": "auto",
+      "type": "string",
+      "x-auditable": true
+    }
+  },
+  "required": [
+    "mode"
+  ],
+  "type": "object"
+}

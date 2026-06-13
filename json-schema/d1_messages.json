@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_messages.json",
+  "title": "D1 Messages",
+  "description": "Schema for d1_messages",
+  "example": [],
+  "items": {
+    "properties": {
+      "code": {
+        "minimum": 1000,
+        "type": "integer"
+      },
+      "message": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "code",
+      "message"
+    ],
+    "type": "object",
+    "uniqueItems": true
+  },
+  "type": "array"
+}

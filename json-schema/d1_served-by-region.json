@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_served-by-region.json",
+  "title": "D1 Served By Region",
+  "description": "Region location hint of the database instance that handled the query.",
+  "enum": [
+    "WNAM",
+    "ENAM",
+    "WEUR",
+    "EEUR",
+    "APAC",
+    "OC"
+  ],
+  "example": "EEUR",
+  "type": "string",
+  "x-auditable": true
+}

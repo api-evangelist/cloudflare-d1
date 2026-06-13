@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_query-result-response.json",
+  "title": "D1 Query Result Response",
+  "description": "Schema for d1_query-result-response",
+  "properties": {
+    "meta": {
+      "$ref": "#/components/schemas/d1_query-meta"
+    },
+    "results": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "success": {
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}

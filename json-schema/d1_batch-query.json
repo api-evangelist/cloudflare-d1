@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_batch-query.json",
+  "title": "D1 Batch Query",
+  "description": "A single query object or a batch query object",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/d1_single-query"
+    },
+    {
+      "properties": {
+        "batch": {
+          "items": {
+            "$ref": "#/components/schemas/d1_single-query"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "batch"
+      ],
+      "title": "multiple queries",
+      "type": "object"
+    }
+  ]
+}

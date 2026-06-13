@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_time-travel-restore-response.json",
+  "title": "D1 Time Travel Restore Response",
+  "description": "Response from a time travel restore operation.",
+  "properties": {
+    "bookmark": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/d1_time-travel-bookmark"
+        },
+        {
+          "description": "The new bookmark representing the state of the database after the restore operation."
+        }
+      ]
+    },
+    "message": {
+      "description": "A message describing the result of the restore operation.",
+      "example": "Database restored successfully",
+      "type": "string",
+      "x-auditable": true
+    },
+    "previous_bookmark": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/d1_time-travel-bookmark"
+        },
+        {
+          "description": "The bookmark representing the state of the database before the restore operation. Can be used to undo the restore if needed."
+        }
+      ]
+    }
+  },
+  "type": "object"
+}

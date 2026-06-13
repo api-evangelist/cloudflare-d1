@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_jurisdiction.json",
+  "title": "D1 Jurisdiction",
+  "description": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored.",
+  "enum": [
+    "eu",
+    "fedramp"
+  ],
+  "example": "eu",
+  "type": "string",
+  "x-auditable": true
+}

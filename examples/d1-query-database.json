@@ -1,0 +1,49 @@
+{
+  "summary": "Execute SQL query against a D1 database",
+  "operationId": "d1-query-database",
+  "request": {
+    "method": "POST",
+    "url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/d1/database/{database_id}/query",
+    "headers": {
+      "Authorization": "Bearer <api_token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "sql": "SELECT * FROM users WHERE active = ? AND created_at > ?",
+      "params": [1, "2026-01-01T00:00:00Z"]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "errors": [],
+      "messages": [],
+      "result": [
+        {
+          "results": [
+            {
+              "id": 1,
+              "email": "alice@example.com",
+              "active": 1,
+              "created_at": "2026-03-15T10:22:00Z"
+            }
+          ],
+          "success": true,
+          "meta": {
+            "changed_db": false,
+            "changes": 0,
+            "duration": 1.2,
+            "last_row_id": 0,
+            "rows_read": 42,
+            "rows_written": 0,
+            "size_after": 204800,
+            "served_by": "v86",
+            "served_by_region": "WEUR",
+            "served_by_primary": false
+          }
+        }
+      ]
+    }
+  }
+}

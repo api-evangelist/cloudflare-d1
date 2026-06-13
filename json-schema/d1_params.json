@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_params.json",
+  "title": "D1 Params",
+  "description": "Schema for d1_params",
+  "example": [
+    "firstParam",
+    "secondParam"
+  ],
+  "items": {
+    "type": "string"
+  },
+  "type": "array"
+}

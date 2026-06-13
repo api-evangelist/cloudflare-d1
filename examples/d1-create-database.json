@@ -1,0 +1,38 @@
+{
+  "summary": "Create a new D1 database",
+  "operationId": "d1-create-database",
+  "request": {
+    "method": "POST",
+    "url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/d1/database",
+    "headers": {
+      "Authorization": "Bearer <api_token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "my-production-db",
+      "primary_location_hint": "weur",
+      "read_replication": {
+        "mode": "auto"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "errors": [],
+      "messages": [],
+      "result": {
+        "uuid": "7b162190-cb3e-4d7b-a862-9f5a69e36a62",
+        "name": "my-production-db",
+        "version": "production",
+        "num_tables": 0,
+        "file_size": 16384,
+        "created_at": "2026-06-13T00:00:00Z",
+        "read_replication": {
+          "mode": "auto"
+        }
+      }
+    }
+  }
+}

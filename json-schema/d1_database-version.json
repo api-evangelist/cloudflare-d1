@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_database-version.json",
+  "title": "D1 Database Version",
+  "description": "Schema for d1_database-version",
+  "example": "production",
+  "pattern": "^(alpha|beta|production)$",
+  "type": "string",
+  "x-auditable": true
+}

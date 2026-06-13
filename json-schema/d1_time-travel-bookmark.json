@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_time-travel-bookmark.json",
+  "title": "D1 Time Travel Bookmark",
+  "description": "A bookmark representing a specific state of the database at a specific point in time.",
+  "example": "00000001-00000002-00004e2f-0a83ea2fceebc654de0640c422be4653",
+  "type": "string",
+  "x-auditable": true
+}

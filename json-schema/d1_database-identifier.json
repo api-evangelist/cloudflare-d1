@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_database-identifier.json",
+  "title": "D1 Database Identifier",
+  "description": "D1 database identifier (UUID).",
+  "example": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "readOnly": true,
+  "type": "string",
+  "x-auditable": true
+}

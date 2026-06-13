@@ -1,0 +1,152 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "d1": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/vocabulary/cloudflare-d1-vocabulary.yml#",
+    "cf": "https://developers.cloudflare.com/d1/",
+    "database": {
+      "@id": "d1:database",
+      "@type": "@id"
+    },
+    "account_identifier": {
+      "@id": "d1:account_identifier",
+      "@type": "xsd:string"
+    },
+    "database_identifier": {
+      "@id": "d1:database_identifier",
+      "@type": "xsd:string"
+    },
+    "database_name": {
+      "@id": "d1:database_name",
+      "@type": "xsd:string"
+    },
+    "query": {
+      "@id": "d1:query",
+      "@type": "@id"
+    },
+    "raw": {
+      "@id": "d1:raw",
+      "@type": "@id"
+    },
+    "sql": {
+      "@id": "d1:sql",
+      "@type": "xsd:string"
+    },
+    "params": {
+      "@id": "d1:params",
+      "@container": "@list"
+    },
+    "batch_query": {
+      "@id": "d1:batch_query",
+      "@container": "@list"
+    },
+    "export": {
+      "@id": "d1:export",
+      "@type": "@id"
+    },
+    "import": {
+      "@id": "d1:import",
+      "@type": "@id"
+    },
+    "time_travel": {
+      "@id": "d1:time_travel",
+      "@type": "@id"
+    },
+    "bookmark": {
+      "@id": "d1:bookmark",
+      "@type": "xsd:string"
+    },
+    "restore": {
+      "@id": "d1:restore",
+      "@type": "@id"
+    },
+    "time_travel_timestamp": {
+      "@id": "d1:time_travel_timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "jurisdiction": {
+      "@id": "d1:jurisdiction",
+      "@type": "xsd:string"
+    },
+    "primary_location_hint": {
+      "@id": "d1:primary_location_hint",
+      "@type": "xsd:string"
+    },
+    "read_replication": {
+      "@id": "d1:read_replication",
+      "@type": "@id"
+    },
+    "file_size": {
+      "@id": "d1:file_size",
+      "@type": "xsd:integer"
+    },
+    "table_count": {
+      "@id": "d1:table_count",
+      "@type": "xsd:integer"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "database_version": {
+      "@id": "d1:database_version",
+      "@type": "xsd:string"
+    },
+    "served_by_colo": {
+      "@id": "d1:served_by_colo",
+      "@type": "xsd:string"
+    },
+    "served_by_region": {
+      "@id": "d1:served_by_region",
+      "@type": "xsd:string"
+    },
+    "query_meta": {
+      "@id": "d1:query_meta",
+      "@type": "@id"
+    },
+    "query_result_response": {
+      "@id": "d1:query_result_response",
+      "@type": "@id"
+    },
+    "raw_result_response": {
+      "@id": "d1:raw_result_response",
+      "@type": "@id"
+    },
+    "time_travel_restore_response": {
+      "@id": "d1:time_travel_restore_response",
+      "@type": "@id"
+    },
+    "api_response_common": {
+      "@id": "d1:api_response_common",
+      "@type": "@id"
+    },
+    "messages": {
+      "@id": "d1:messages",
+      "@container": "@list"
+    },
+    "success": {
+      "@id": "schema:result",
+      "@type": "xsd:boolean"
+    },
+    "errors": {
+      "@id": "schema:error",
+      "@container": "@list"
+    },
+    "result": {
+      "@id": "schema:result"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "uuid": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    }
+  }
+}

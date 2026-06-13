@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_created-at.json",
+  "title": "D1 Created At",
+  "description": "Specifies the timestamp the resource was created as an ISO8601 string.",
+  "example": "2022-11-15T18:25:44.442097Z",
+  "format": "date-time",
+  "readOnly": true,
+  "type": "string",
+  "x-auditable": true
+}

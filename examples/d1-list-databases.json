@@ -1,0 +1,42 @@
+{
+  "summary": "List all D1 databases for an account",
+  "operationId": "d1-list-databases",
+  "request": {
+    "method": "GET",
+    "url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/d1/database",
+    "headers": {
+      "Authorization": "Bearer <api_token>"
+    },
+    "queryParams": {
+      "name": "my-",
+      "per_page": 10,
+      "page": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "errors": [],
+      "messages": [],
+      "result": [
+        {
+          "uuid": "7b162190-cb3e-4d7b-a862-9f5a69e36a62",
+          "name": "my-production-db",
+          "version": "production",
+          "num_tables": 5,
+          "file_size": 204800,
+          "created_at": "2026-03-01T00:00:00Z"
+        },
+        {
+          "uuid": "a4e9b301-1cd2-4f3e-b1a0-8f2d3e9c7b14",
+          "name": "my-staging-db",
+          "version": "production",
+          "num_tables": 5,
+          "file_size": 98304,
+          "created_at": "2026-04-10T00:00:00Z"
+        }
+      ]
+    }
+  }
+}

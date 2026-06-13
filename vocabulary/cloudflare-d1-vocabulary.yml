@@ -1,0 +1,109 @@
+vocabulary:
+  - term: database
+    definition: A Cloudflare D1 serverless SQLite database instance identified by account_id
+      and database_id.
+  - term: account_identifier
+    definition: A Cloudflare account ID used to scope API operations to a specific customer
+      account.
+  - term: database_identifier
+    definition: A unique UUID identifying a specific D1 database within a Cloudflare account.
+  - term: database_name
+    definition: A human-readable name assigned to a D1 database at creation time.
+  - term: query
+    definition: Execute one or more SQL statements against a D1 database and return results
+      as objects keyed by column name.
+  - term: raw
+    definition: Execute SQL statements against a D1 database and return results as arrays
+      of values rather than objects, for improved performance.
+  - term: batch_query
+    definition: A set of SQL statements executed together as a single atomic batch against
+      a D1 database.
+  - term: single_query
+    definition: A single SQL query with optional bound parameters executed against a D1 database.
+  - term: sql
+    definition: A SQL statement or set of statements joined by semicolons to be executed
+      against a D1 database.
+  - term: params
+    definition: Bound parameters for parameterized SQL queries, supplied as an ordered list
+      of values.
+  - term: export
+    definition: Export a D1 database as a SQL dump file available for download via a signed
+      URL.
+  - term: import
+    definition: Import SQL data into a D1 database from an uploaded file, enabling bulk
+      data ingestion.
+  - term: time_travel
+    definition: Cloudflare D1 feature enabling point-in-time recovery of database state
+      to any previous moment within the retention window.
+  - term: bookmark
+    definition: A time-travel reference point identifying a specific state of the database
+      at a particular point in time, used for restore operations.
+  - term: restore
+    definition: Restore a D1 database to a previous state identified by a time-travel bookmark
+      or ISO 8601 timestamp.
+  - term: time_travel_timestamp
+    definition: An ISO 8601 timestamp used for time travel operations; the database will
+      be restored to the nearest available bookmark at or before this timestamp.
+  - term: jurisdiction
+    definition: The data jurisdiction for a D1 database instance controlling where data
+      is stored and processed (e.g., EU or default global).
+  - term: primary_location_hint
+    definition: A region hint specifying where the D1 primary database should be created;
+      if omitted the system places it closest to the requesting user.
+  - term: read_replication
+    definition: D1 global read replication feature that distributes read operations across
+      Cloudflare's edge network for lower latency global reads.
+  - term: read_replication_details_for_request
+    definition: Request-time configuration object controlling D1 read replication behavior
+      including mode settings.
+  - term: read_replication_details_for_response
+    definition: Response-time configuration object describing the current D1 read replication
+      mode for a database.
+  - term: database_details_response
+    definition: Full details of a D1 database instance returned by get and create endpoints,
+      including size, table count, and replication settings.
+  - term: database_response
+    definition: Response envelope wrapping D1 database details for single-database API responses.
+  - term: query_result_response
+    definition: Response from a D1 query operation returning results as a list of objects
+      keyed by column name with metadata.
+  - term: raw_result_response
+    definition: Response from a D1 raw query operation returning results as arrays of values
+      with column names listed separately.
+  - term: query_meta
+    definition: Metadata returned alongside D1 query results including duration, row counts,
+      and the serving colo and region.
+  - term: time_travel_restore_response
+    definition: Response confirming a successful D1 time-travel restore operation with bookmark
+      details.
+  - term: api_response_common
+    definition: Common Cloudflare API response envelope containing success flag, result,
+      errors, and messages fields.
+  - term: api_response_common_failure
+    definition: Common Cloudflare API error response envelope returned when an API call fails.
+  - term: served_by_colo
+    definition: Three-letter IATA airport code of the Cloudflare point-of-presence (colo)
+      that handled the D1 query.
+  - term: served_by_region
+    definition: Region location hint of the D1 database instance that handled the query.
+  - term: file_size
+    definition: The D1 database size in bytes as reported in database detail responses.
+  - term: table_count
+    definition: The number of user tables present in the D1 database.
+  - term: created_at
+    definition: ISO 8601 timestamp recording when the D1 database was first created.
+  - term: database_version
+    definition: The version string of the D1 database instance.
+  - term: database_update_request_body
+    definition: Request body for a full update (PUT) of a D1 database's mutable properties
+      such as name and read replication settings.
+  - term: database_update_partial_request_body
+    definition: Request body for a partial update (PATCH) of a D1 database's mutable properties.
+  - term: jurisdiction_nullable
+    definition: Optional jurisdiction constraint field that, when present, restricts the
+      D1 database to run and store data in the specified region, overriding location hints.
+  - term: messages
+    definition: Array of informational messages returned alongside Cloudflare API responses.
+  - term: d1
+    definition: Cloudflare D1 — a managed serverless SQLite database service offering SQL
+      semantics, Time Travel recovery, read replication, and native Cloudflare Workers integration.

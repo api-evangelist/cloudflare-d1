@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_account-identifier.json",
+  "title": "D1 Account Identifier",
+  "description": "Account identifier tag.",
+  "example": "023e105f4ecef8ad9ca31a8372d0c353",
+  "maxLength": 32,
+  "readOnly": true,
+  "type": "string",
+  "x-auditable": true
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_database-update-request-body.json",
+  "title": "D1 Database Update Request Body",
+  "description": "Schema for d1_database-update-request-body",
+  "properties": {
+    "read_replication": {
+      "$ref": "#/components/schemas/d1_read-replication-details-for-request"
+    }
+  },
+  "required": [
+    "read_replication"
+  ],
+  "type": "object"
+}

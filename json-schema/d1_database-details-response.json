@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_database-details-response.json",
+  "title": "D1 Database Details Response",
+  "description": "The details of the D1 database.",
+  "properties": {
+    "created_at": {
+      "$ref": "#/components/schemas/d1_created-at"
+    },
+    "file_size": {
+      "$ref": "#/components/schemas/d1_file-size"
+    },
+    "jurisdiction": {
+      "$ref": "#/components/schemas/d1_jurisdiction-nullable"
+    },
+    "name": {
+      "$ref": "#/components/schemas/d1_database-name"
+    },
+    "num_tables": {
+      "$ref": "#/components/schemas/d1_table-count"
+    },
+    "read_replication": {
+      "$ref": "#/components/schemas/d1_read-replication-details-for-response"
+    },
+    "uuid": {
+      "$ref": "#/components/schemas/d1_database-identifier"
+    },
+    "version": {
+      "$ref": "#/components/schemas/d1_database-version"
+    }
+  },
+  "type": "object"
+}

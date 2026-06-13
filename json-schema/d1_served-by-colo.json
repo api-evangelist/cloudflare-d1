@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_served-by-colo.json",
+  "title": "D1 Served By Colo",
+  "description": "The three letters airport code of the colo that handled the query.",
+  "example": "LHR",
+  "type": "string",
+  "x-auditable": true
+}

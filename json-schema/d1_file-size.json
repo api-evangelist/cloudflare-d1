@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/main/json-schema/d1_file-size.json",
+  "title": "D1 File Size",
+  "description": "The D1 database's size, in bytes.",
+  "example": 12,
+  "type": "number",
+  "x-auditable": true
+}
