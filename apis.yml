@@ -1,0 +1,76 @@
+aid: cloudflare-d1
+name: Cloudflare D1
+description: Cloudflare D1 is a managed, serverless SQLite database service with a
+  REST API for querying D1 databases, executing SQL statements, listing databases,
+  and managing database instances at the edge. D1 offers SQLite semantics, built-in
+  Time Travel point-in-time recovery, global read replication, and seamless integration
+  with Cloudflare Workers and Pages.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Database
+  - SQLite
+  - Serverless
+  - Edge Computing
+  - SQL
+  - Cloudflare
+  - Workers
+apis:
+  - aid: cloudflare-d1:cloudflare-d1-api
+    name: Cloudflare D1 API
+    description: REST API for managing and querying Cloudflare D1 serverless SQLite
+      databases. Provides endpoints for database lifecycle management (create, list,
+      get, delete), SQL query execution (query and raw modes), data import/export,
+      and Time Travel point-in-time restore operations.
+    humanURL: https://developers.cloudflare.com/d1/
+    baseURL: https://api.cloudflare.com/client/v4
+    tags:
+      - Database
+      - SQLite
+      - Serverless
+      - SQL
+      - Edge
+    properties:
+      - type: Documentation
+        url: https://developers.cloudflare.com/d1/
+      - type: OpenAPI
+        url: https://developers.cloudflare.com/api/resources/d1/subresources/database/
+      - type: Authentication
+        url: https://developers.cloudflare.com/d1/get-started/
+    contact:
+      - FN: Cloudflare Support
+        url: https://developers.cloudflare.com/support/
+common:
+  - type: Website
+    url: https://www.cloudflare.com/developer-platform/d1/
+  - type: Documentation
+    url: https://developers.cloudflare.com/d1/
+  - type: GitHubOrg
+    url: https://github.com/cloudflare
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/cloudflare/
+  - type: Blog
+    url: https://blog.cloudflare.com/
+  - type: Pricing
+    url: https://developers.cloudflare.com/d1/platform/pricing/
+  - type: StatusPage
+    url: https://www.cloudflarestatus.com/
+  - type: X
+    url: https://x.com/cloudflare
+  - type: Plans
+    url: plans/cloudflare-d1-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/cloudflare-d1-rate-limits.yml
+  - type: FinOps
+    url: finops/cloudflare-d1-finops.yml
+  - type: ChangeLog
+    url: https://developers.cloudflare.com/d1/platform/release-notes/
+  - type: SDK
+    url: https://github.com/cloudflare/cloudflare-typescript
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

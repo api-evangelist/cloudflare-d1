@@ -1,0 +1,106 @@
+specificationVersion: '0.1'
+id: cloudflare-d1-plans-pricing
+name: Cloudflare D1 Plans and Pricing
+description: Cloudflare D1 pricing is based on a scale-to-zero model. Charges apply
+  only for rows read, rows written, and storage consumed. There are no charges for
+  idle time, data transfer, or egress. Two plan tiers are available tied to the Cloudflare
+  Workers subscription level.
+url: https://developers.cloudflare.com/d1/platform/pricing/
+plans:
+  - name: Workers Free
+    description: Free tier for Cloudflare D1 included with the Workers Free plan.
+      Suitable for development, prototyping, and low-traffic applications. Daily limits
+      reset at 00:00 UTC.
+    url: https://developers.cloudflare.com/d1/platform/pricing/
+    price: 0
+    currency: USD
+    period: monthly
+    features:
+      - name: Rows Read
+        description: Maximum rows read per day across all D1 databases
+        quota: 5000000
+        unit: rows/day
+      - name: Rows Written
+        description: Maximum rows written per day across all D1 databases
+        quota: 100000
+        unit: rows/day
+      - name: Storage
+        description: Total storage across all databases in the account
+        quota: 5
+        unit: GB
+      - name: Databases
+        description: Maximum number of D1 databases per account
+        quota: 10
+        unit: databases
+      - name: Maximum Database Size
+        description: Maximum size of a single D1 database
+        quota: 500
+        unit: MB
+      - name: Time Travel
+        description: Point-in-time recovery window
+        quota: 7
+        unit: days
+      - name: Queries per Worker Invocation
+        description: Maximum number of D1 queries per single Worker invocation
+        quota: 50
+        unit: queries/invocation
+  - name: Workers Paid
+    description: Paid tier for Cloudflare D1 included with the Workers Paid plan
+      ($5/month). Includes generous monthly allotments and pay-as-you-go pricing
+      beyond included usage. Monthly limits reset on the subscription renewal date.
+    url: https://developers.cloudflare.com/d1/platform/pricing/
+    price: 5
+    currency: USD
+    period: monthly
+    features:
+      - name: Rows Read (Included)
+        description: Rows read included per month before pay-as-you-go pricing applies
+        quota: 25000000000
+        unit: rows/month
+      - name: Rows Read (Overage)
+        description: Cost per million rows read beyond the included 25 billion/month
+        price: 0.001
+        currency: USD
+        unit: per million rows
+      - name: Rows Written (Included)
+        description: Rows written included per month before pay-as-you-go pricing applies
+        quota: 50000000
+        unit: rows/month
+      - name: Rows Written (Overage)
+        description: Cost per million rows written beyond the included 50 million/month
+        price: 1.00
+        currency: USD
+        unit: per million rows
+      - name: Storage (Included)
+        description: Storage included per month before pay-as-you-go pricing applies
+        quota: 5
+        unit: GB
+      - name: Storage (Overage)
+        description: Cost per GB-month of storage beyond the included 5 GB
+        price: 0.75
+        currency: USD
+        unit: per GB-month
+      - name: Databases
+        description: Maximum number of D1 databases per account
+        quota: 50000
+        unit: databases
+      - name: Maximum Database Size
+        description: Maximum size of a single D1 database
+        quota: 10
+        unit: GB
+      - name: Maximum Account Storage
+        description: Maximum total storage across all databases
+        quota: 1024
+        unit: GB
+      - name: Time Travel
+        description: Point-in-time recovery window
+        quota: 30
+        unit: days
+      - name: Queries per Worker Invocation
+        description: Maximum number of D1 queries per single Worker invocation
+        quota: 1000
+        unit: queries/invocation
+      - name: No Egress Fees
+        description: No data transfer or egress charges for any plan
+      - name: Read Replication
+        description: Global read-only replicas at no additional cost

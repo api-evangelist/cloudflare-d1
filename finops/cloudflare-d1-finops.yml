@@ -1,0 +1,157 @@
+specificationVersion: '1.0'
+id: cloudflare-d1-finops
+name: Cloudflare D1 FinOps Framework
+description: FinOps cost management framework for Cloudflare D1 serverless SQLite
+  databases. D1 uses a scale-to-zero billing model with charges based on rows read,
+  rows written, and storage. No charges apply for idle time, compute hours, or data
+  egress.
+url: https://developers.cloudflare.com/d1/platform/pricing/
+framework: FOCUS 1.0
+costDrivers:
+  - id: rows-read
+    name: Rows Read
+    description: Number of rows scanned by SELECT queries and other read operations,
+      regardless of row size or column count. This is the primary cost driver for
+      read-heavy workloads.
+    unit: rows
+    billingModel: consumption
+    tiers:
+      - plan: Workers Free
+        included: 5000000
+        period: daily
+        price: 0
+        currency: USD
+        overage: null
+      - plan: Workers Paid
+        included: 25000000000
+        period: monthly
+        price: 0
+        currency: USD
+        overage:
+          price: 0.001
+          unit: per million rows
+          currency: USD
+  - id: rows-written
+    name: Rows Written
+    description: Number of rows affected by INSERT, UPDATE, and DELETE operations.
+      Row size and column count do not affect this metric.
+    unit: rows
+    billingModel: consumption
+    tiers:
+      - plan: Workers Free
+        included: 100000
+        period: daily
+        price: 0
+        currency: USD
+        overage: null
+      - plan: Workers Paid
+        included: 50000000
+        period: monthly
+        price: 0
+        currency: USD
+        overage:
+          price: 1.00
+          unit: per million rows
+          currency: USD
+  - id: storage
+    name: Database Storage
+    description: Total storage consumed by all D1 databases in the account, including
+      tables and indexes. Measured at the account level, not per-database.
+    unit: GB-month
+    billingModel: consumption
+    tiers:
+      - plan: Workers Free
+        included: 5
+        period: monthly
+        price: 0
+        currency: USD
+        overage: null
+      - plan: Workers Paid
+        included: 5
+        period: monthly
+        price: 0
+        currency: USD
+        overage:
+          price: 0.75
+          unit: per GB-month
+          currency: USD
+costOptimization:
+  - id: index-optimization
+    name: Optimize Indexes to Reduce Rows Read
+    description: Use proper indexes to minimize the number of rows scanned per query.
+      D1 charges for rows read (scanned), not rows returned. Full table scans on large
+      tables are a primary cost driver.
+    impact: high
+    category: efficiency
+  - id: query-batching
+    name: Batch Multiple Statements
+    description: Use the batch query API or semicolon-separated SQL statements to
+      send multiple operations in a single HTTP request, reducing API overhead and
+      Worker invocation costs.
+    impact: medium
+    category: efficiency
+  - id: avoid-select-star
+    name: Avoid SELECT * Queries
+    description: Select only the columns needed rather than all columns. While row
+      size does not affect the rows-read count, limiting result sets reduces network
+      transfer and query response size.
+    impact: low
+    category: efficiency
+  - id: use-raw-endpoint
+    name: Use the /raw Endpoint for Performance
+    description: The /raw query endpoint returns rows as arrays rather than objects,
+      reducing serialization overhead and response payload size for large result sets.
+    impact: medium
+    category: performance
+  - id: read-replication
+    name: Leverage Read Replication at No Extra Cost
+    description: Global read replicas are available at no additional charge on paid
+      plans. Routing read queries to replicas reduces latency and can improve throughput
+      without additional cost.
+    impact: medium
+    category: performance
+  - id: upgrade-to-paid
+    name: Upgrade to Paid Plan for High-Volume Workloads
+    description: The Workers Paid plan includes 25 billion rows read and 50 million
+      rows written per month. For workloads exceeding Free plan daily limits, upgrading
+      provides significantly higher allotments and pay-as-you-go pricing.
+    impact: high
+    category: planning
+  - id: time-travel-awareness
+    name: Be Aware of Time Travel Storage Impact
+    description: Time Travel bookmarks consume storage. On paid plans, 30 days of
+      point-in-time recovery history is retained. For databases with high write volume,
+      monitor storage usage to avoid unexpected overage charges.
+    impact: medium
+    category: awareness
+visibility:
+  - name: Cloudflare Dashboard Metrics
+    description: Query metrics, rows read/written, and storage usage visible in the
+      Cloudflare dashboard under the D1 section
+    url: https://dash.cloudflare.com/
+  - name: GraphQL Analytics API
+    description: Programmatic access to D1 usage metrics via the Cloudflare GraphQL
+      Analytics API for custom dashboards and alerting
+    url: https://developers.cloudflare.com/analytics/graphql-api/
+  - name: Wrangler D1 Insights
+    description: CLI tool for analyzing query performance and identifying expensive
+      queries using `wrangler d1 insights`
+    url: https://developers.cloudflare.com/workers/wrangler/
+  - name: Metrics Retention
+    description: Metrics data retained for 31 days for historical analysis and cost
+      attribution
+budgetConsiderations:
+  - name: Scale-to-Zero Billing
+    description: D1 has no minimum charge for compute. If no queries are executed,
+      no compute charges apply. Only storage persists as an ongoing cost even with
+      zero activity.
+  - name: No Egress Fees
+    description: There are no data transfer or egress fees for any D1 plan, making
+      D1 cost-predictable for data-intensive read workloads.
+  - name: Dashboard and CLI Queries Are Billable
+    description: Queries executed via the Cloudflare dashboard or Wrangler CLI count
+      against plan limits and are billed the same as application queries.
+  - name: Free Plan Daily Reset
+    description: Free plan limits (rows read and rows written) reset daily at 00:00
+      UTC, not monthly. Applications may hit limits before the daily reset if usage
+      is concentrated in short periods.

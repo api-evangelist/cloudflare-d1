@@ -1,0 +1,143 @@
+specificationVersion: '0.1'
+id: cloudflare-d1-rate-limits
+name: Cloudflare D1 Rate Limits and Operational Limits
+description: Operational limits, quotas, and constraints for Cloudflare D1 serverless
+  SQLite databases. Limits vary between the Workers Free and Workers Paid plans.
+url: https://developers.cloudflare.com/d1/platform/limits/
+limits:
+  - name: Databases per Account (Free)
+    description: Maximum number of D1 databases allowed per Cloudflare account on
+      the Workers Free plan
+    value: 10
+    unit: databases
+    plan: Workers Free
+  - name: Databases per Account (Paid)
+    description: Maximum number of D1 databases allowed per Cloudflare account on
+      the Workers Paid plan
+    value: 50000
+    unit: databases
+    plan: Workers Paid
+  - name: Maximum Database Size (Free)
+    description: Maximum size of a single D1 database on the Workers Free plan
+    value: 500
+    unit: MB
+    plan: Workers Free
+  - name: Maximum Database Size (Paid)
+    description: Maximum size of a single D1 database on the Workers Paid plan
+    value: 10
+    unit: GB
+    plan: Workers Paid
+  - name: Maximum Storage per Account (Free)
+    description: Total storage across all D1 databases for the Workers Free plan
+    value: 5
+    unit: GB
+    plan: Workers Free
+  - name: Maximum Storage per Account (Paid)
+    description: Total storage across all D1 databases for the Workers Paid plan
+    value: 1
+    unit: TB
+    plan: Workers Paid
+  - name: Rows Read per Day (Free)
+    description: Maximum rows that can be read per day on the Workers Free plan. Resets
+      at 00:00 UTC.
+    value: 5000000
+    unit: rows/day
+    plan: Workers Free
+  - name: Rows Written per Day (Free)
+    description: Maximum rows that can be written per day on the Workers Free plan.
+      Resets at 00:00 UTC.
+    value: 100000
+    unit: rows/day
+    plan: Workers Free
+  - name: Rows Read per Month (Paid - Included)
+    description: Rows read included per month in the Workers Paid plan before overage
+      billing begins
+    value: 25000000000
+    unit: rows/month
+    plan: Workers Paid
+  - name: Rows Written per Month (Paid - Included)
+    description: Rows written included per month in the Workers Paid plan before overage
+      billing begins
+    value: 50000000
+    unit: rows/month
+    plan: Workers Paid
+  - name: Queries per Worker Invocation (Free)
+    description: Maximum number of D1 database queries per single Worker invocation
+      on the Free plan
+    value: 50
+    unit: queries/invocation
+    plan: Workers Free
+  - name: Queries per Worker Invocation (Paid)
+    description: Maximum number of D1 database queries per single Worker invocation
+      on the Paid plan
+    value: 1000
+    unit: queries/invocation
+    plan: Workers Paid
+  - name: Maximum SQL Statement Length
+    description: Maximum byte size of a single SQL statement
+    value: 100000
+    unit: bytes
+    plan: All
+  - name: Maximum Query Duration
+    description: Maximum execution time for a single database query
+    value: 30
+    unit: seconds
+    plan: All
+  - name: Maximum Bound Parameters per Query
+    description: Maximum number of bound parameters (placeholders) allowed in a single
+      SQL query
+    value: 100
+    unit: parameters
+    plan: All
+  - name: Maximum SQL Function Arguments
+    description: Maximum number of arguments allowed for a single SQL function call
+    value: 32
+    unit: arguments
+    plan: All
+  - name: Maximum Columns per Table
+    description: Maximum number of columns allowed in a single D1 table
+    value: 100
+    unit: columns
+    plan: All
+  - name: Maximum Row/String/BLOB Size
+    description: Maximum byte size of a single row, string value, or BLOB value
+    value: 2000000
+    unit: bytes
+    plan: All
+  - name: LIKE/GLOB Pattern Characters
+    description: Maximum number of characters allowed in a LIKE or GLOB pattern expression
+    value: 50
+    unit: bytes
+    plan: All
+  - name: Simultaneous D1 Connections per Invocation
+    description: Maximum number of simultaneous D1 database connections per Worker
+      invocation
+    value: 6
+    unit: connections
+    plan: All
+  - name: Time Travel Restore Operations
+    description: Maximum number of Time Travel restore operations per database per
+      10-minute window
+    value: 10
+    unit: restores/10 minutes
+    plan: Workers Paid
+  - name: Time Travel Window (Free)
+    description: Point-in-time recovery window for D1 databases on the Free plan
+    value: 7
+    unit: days
+    plan: Workers Free
+  - name: Time Travel Window (Paid)
+    description: Point-in-time recovery window for D1 databases on the Paid plan
+    value: 30
+    unit: days
+    plan: Workers Paid
+  - name: File Import Size Limit
+    description: Maximum size of a SQL file that can be imported into a D1 database
+    value: 5
+    unit: GB
+    plan: All
+  - name: Metrics Retention
+    description: Duration for which query metrics and analytics data is retained
+    value: 31
+    unit: days
+    plan: All
