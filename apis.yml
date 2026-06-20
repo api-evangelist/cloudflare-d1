@@ -6,7 +6,7 @@ description: Cloudflare D1 is a managed, serverless SQLite database service with
   Time Travel point-in-time recovery, global read replication, and seamless integration
   with Cloudflare Workers and Pages.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
