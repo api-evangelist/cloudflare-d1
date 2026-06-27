@@ -69,7 +69,7 @@ common:
     url: finops/cloudflare-d1-finops.yml
   - type: ChangeLog
     url: https://developers.cloudflare.com/d1/platform/release-notes/
-  - type: SDK
+  - type: SDKs
     url: https://github.com/cloudflare/cloudflare-typescript
 maintainers:
   - FN: Kin Lane
