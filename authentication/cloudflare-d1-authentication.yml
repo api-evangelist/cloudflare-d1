@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cloudflare-d1-cloudflare-d1-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: api_email
+  type: apiKey
+  in: header
+  parameter: X-Auth-Email
+  sources:
+  - openapi/cloudflare-d1-cloudflare-d1-api-openapi.yml
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: X-Auth-Key
+  sources:
+  - openapi/cloudflare-d1-cloudflare-d1-api-openapi.yml
+- name: api_token
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/cloudflare-d1-cloudflare-d1-api-openapi.yml
+- name: user_service_key
+  type: apiKey
+  in: header
+  parameter: X-Auth-User-Service-Key
+  sources:
+  - openapi/cloudflare-d1-cloudflare-d1-api-openapi.yml

@@ -45,6 +45,12 @@ apis:
       - FN: Cloudflare Support
         url: https://developers.cloudflare.com/support/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/cloudflare-d1-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/cloudflare-d1-domain-security.yml
+  - type: Authentication
+    url: authentication/cloudflare-d1-authentication.yml
   - type: Website
     url: https://www.cloudflare.com/developer-platform/d1/
   - type: Documentation
