@@ -5,14 +5,17 @@
       "source": "https://blog.cloudflare.com/rss/",
       "feed_url": "https://blog.cloudflare.com/rss/",
       "title": "",
-      "saved": 4,
+      "saved": 0,
       "method": "feed"
     },
     {
       "source": "https://www.linkedin.com/company/cloudflare/",
-      "error": "HTTPError"
+      "feed_url": "https://www.linkedin.com/company/cloudflare/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T12:03:07Z",
-  "post_count": 10
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 24
 }
