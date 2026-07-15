@@ -45,6 +45,8 @@ apis:
       - FN: Cloudflare Support
         url: https://developers.cloudflare.com/support/
 common:
+  - type: AgenticAccess
+    url: agentic-access/cloudflare-d1-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/cloudflare-d1-vulnerability-disclosure.yml
   - type: DomainSecurity
