@@ -1,10 +1,7 @@
 openapi: 3.0.3
 info:
   title: Cloudflare D1 API
-  description: REST API for managing and querying Cloudflare D1 serverless SQLite
-    databases. Provides endpoints for database lifecycle management (create, list,
-    get, delete), SQL query execution (query and raw modes), data import/export, and
-    Time Travel point-in-time restore operations.
+  description: REST API for managing and querying Cloudflare D1 serverless SQLite databases. Provides endpoints for database lifecycle management (create, list, get, delete), SQL query execution (query and raw modes), data import/export, and Time Travel point-in-time restore operations.
   version: 4.0.0
   contact:
     name: Cloudflare Support
@@ -12,9 +9,6 @@ info:
   license:
     name: BSD 3-Clause
     url: https://github.com/cloudflare/cloudflare-python/blob/main/LICENSE
-externalDocs:
-  description: Cloudflare D1 Documentation
-  url: https://developers.cloudflare.com/d1/
 servers:
 - url: https://api.cloudflare.com/client/v4
   description: Cloudflare API v4
@@ -22,6 +16,8 @@ security:
 - api_token: []
 - api_key: []
   api_email: []
+tags:
+- name: D1
 paths:
   /accounts/{account_id}/d1/database:
     get:
@@ -86,8 +82,7 @@ paths:
                           example: 20
                           type: number
                         total_count:
-                          description: Total results available without any search
-                            parameters
+                          description: Total results available without any search parameters
                           example: 2000
                           type: number
                       type: object
@@ -214,8 +209,7 @@ paths:
           oneOf:
           - $ref: '#/components/schemas/d1_database-identifier'
           - $ref: '#/components/schemas/d1_database-name'
-      - description: 'Comma-separated list of fields to include in the response. When
-          omitted,
+      - description: 'Comma-separated list of fields to include in the response. When omitted,
 
           all fields are returned.
 
@@ -360,14 +354,11 @@ paths:
       - D1 Write
   /accounts/{account_id}/d1/database/{database_id}/export:
     post:
-      description: 'Returns a URL where the SQL contents of your D1 can be downloaded.
-        Note: this process may take
+      description: 'Returns a URL where the SQL contents of your D1 can be downloaded. Note: this process may take
 
-        some time for larger DBs, during which your D1 will be unavailable to serve
-        queries. To avoid
+        some time for larger DBs, during which your D1 will be unavailable to serve queries. To avoid
 
-        blocking your DB unnecessarily, an in-progress export must be continually
-        polled or will automatically cancel.
+        blocking your DB unnecessarily, an in-progress export must be continually polled or will automatically cancel.
 
         '
       operationId: d1-export-database
@@ -388,8 +379,7 @@ paths:
             schema:
               properties:
                 current_bookmark:
-                  description: To poll an in-progress export, provide the current
-                    bookmark (returned by your first polling response)
+                  description: To poll an in-progress export, provide the current bookmark (returned by your first polling response)
                   type: string
                   x-auditable: true
                 dump_options:
@@ -403,17 +393,14 @@ paths:
                       type: boolean
                       x-auditable: true
                     tables:
-                      description: 'Filter the export to just one or more tables.
-                        Passing an empty array is the same as not passing anything
-                        and means: export all tables.'
+                      description: 'Filter the export to just one or more tables. Passing an empty array is the same as not passing anything and means: export all tables.'
                       items:
                         type: string
                         x-auditable: true
                       type: array
                   type: object
                 output_format:
-                  description: Specifies that you will poll this endpoint until the
-                    export completes
+                  description: Specifies that you will poll this endpoint until the export completes
                   enum:
                   - polling
                   type: string
@@ -439,14 +426,11 @@ paths:
                     result:
                       properties:
                         at_bookmark:
-                          description: The current time-travel bookmark for your D1,
-                            used to poll for updates. Will not change for the duration
-                            of the export task.
+                          description: The current time-travel bookmark for your D1, used to poll for updates. Will not change for the duration of the export task.
                           type: string
                           x-auditable: true
                         error:
-                          description: Only present when status = 'error'. Contains
-                            the error message.
+                          description: Only present when status = 'error'. Contains the error message.
                           type: string
                           x-auditable: true
                         messages:
@@ -463,8 +447,7 @@ paths:
                               type: string
                               x-auditable: true
                             signed_url:
-                              description: The URL to download the exported SQL. Available
-                                for one hour.
+                              description: The URL to download the exported SQL. Available for one hour.
                               type: string
                           type: object
                         status:
@@ -493,9 +476,7 @@ paths:
                     result:
                       properties:
                         at_bookmark:
-                          description: The current time-travel bookmark for your D1,
-                            used to poll for updates. Will not change for the duration
-                            of the export task.
+                          description: The current time-travel bookmark for your D1, used to poll for updates. Will not change for the duration of the export task.
                           type: string
                           x-auditable: true
                         messages:
@@ -528,8 +509,7 @@ paths:
       - D1
   /accounts/{account_id}/d1/database/{database_id}/import:
     post:
-      description: 'Generates a temporary URL for uploading an SQL file to, then instructing
-        the D1 to import it
+      description: 'Generates a temporary URL for uploading an SQL file to, then instructing the D1 to import it
 
         and polling it for status updates. Imports block the D1 for their duration.
 
@@ -559,9 +539,7 @@ paths:
                     type: string
                     x-auditable: true
                   etag:
-                    description: Required when action is 'init' or 'ingest'. An md5
-                      hash of the file you're uploading. Used to check if it already
-                      exists, and validate its contents before ingesting.
+                    description: Required when action is 'init' or 'ingest'. An md5 hash of the file you're uploading. Used to check if it already exists, and validate its contents before ingesting.
                     type: string
                     x-auditable: true
                 required:
@@ -571,16 +549,13 @@ paths:
                 type: object
               - properties:
                   action:
-                    description: Indicates you've finished uploading to tell the D1
-                      to start consuming it
+                    description: Indicates you've finished uploading to tell the D1 to start consuming it
                     enum:
                     - ingest
                     type: string
                     x-auditable: true
                   etag:
-                    description: An md5 hash of the file you're uploading. Used to
-                      check if it already exists, and validate its contents before
-                      ingesting.
+                    description: An md5 hash of the file you're uploading. Used to check if it already exists, and validate its contents before ingesting.
                     type: string
                     x-auditable: true
                   filename:
@@ -595,15 +570,13 @@ paths:
                 type: object
               - properties:
                   action:
-                    description: Indicates you've finished uploading to tell the D1
-                      to start consuming it
+                    description: Indicates you've finished uploading to tell the D1 to start consuming it
                     enum:
                     - poll
                     type: string
                     x-auditable: true
                   current_bookmark:
-                    description: This identifies the currently-running import, checking
-                      its status.
+                    description: This identifies the currently-running import, checking its status.
                     type: string
                     x-auditable: true
                 required:
@@ -629,21 +602,15 @@ paths:
                     result:
                       properties:
                         at_bookmark:
-                          description: The current time-travel bookmark for your D1,
-                            used to poll for updates. Will not change for the duration
-                            of the import. Only returned if an import process is currently
-                            running or recently finished.
+                          description: The current time-travel bookmark for your D1, used to poll for updates. Will not change for the duration of the import. Only returned if an import process is currently running or recently finished.
                           type: string
                           x-auditable: true
                         error:
-                          description: Only present when status = 'error'. Contains
-                            the error message that prevented the import from succeeding.
+                          description: Only present when status = 'error'. Contains the error message that prevented the import from succeeding.
                           type: string
                           x-auditable: true
                         filename:
-                          description: Derived from the database ID and etag, to use
-                            in avoiding repeated uploads. Only returned when for the
-                            'init' action.
+                          description: Derived from the database ID and etag, to use in avoiding repeated uploads. Only returned when for the 'init' action.
                           type: string
                           x-auditable: true
                         messages:
@@ -656,15 +623,13 @@ paths:
                           description: Only present when status = 'complete'
                           properties:
                             final_bookmark:
-                              description: The time-travel bookmark if you need restore
-                                your D1 to directly after the import succeeded.
+                              description: The time-travel bookmark if you need restore your D1 to directly after the import succeeded.
                               type: string
                               x-auditable: true
                             meta:
                               $ref: '#/components/schemas/d1_query-meta'
                             num_queries:
-                              description: The total number of queries that were executed
-                                during the import.
+                              description: The total number of queries that were executed during the import.
                               type: number
                               x-auditable: true
                           type: object
@@ -683,12 +648,10 @@ paths:
                           type: string
                           x-auditable: true
                         upload_url:
-                          description: The R2 presigned URL to use for uploading.
-                            Only returned when for the 'init' action.
+                          description: The R2 presigned URL to use for uploading. Only returned when for the 'init' action.
                           type: string
                       type: object
-          description: Successful action. Import is either ready to start, under way,
-            or finished (succeeded or failed).
+          description: Successful action. Import is either ready to start, under way, or finished (succeeded or failed).
         '202':
           content:
             application/json:
@@ -699,8 +662,7 @@ paths:
                     result:
                       properties:
                         at_bookmark:
-                          description: The current bookmark for your D1, used to poll
-                            for updates. Will not change for the duration of the import.
+                          description: The current bookmark for your D1, used to poll for updates. Will not change for the duration of the import.
                           type: string
                           x-auditable: true
                         messages:
@@ -783,8 +745,7 @@ paths:
       - D1 Write
   /accounts/{account_id}/d1/database/{database_id}/raw:
     post:
-      description: Returns the query result rows as arrays rather than objects. This
-        is a performance-optimized version of the /query endpoint.
+      description: Returns the query result rows as arrays rather than objects. This is a performance-optimized version of the /query endpoint.
       operationId: d1-raw-database-query
       parameters:
       - in: path
@@ -834,11 +795,9 @@ paths:
       - D1 Write
   /accounts/{account_id}/d1/database/{database_id}/time_travel/bookmark:
     get:
-      description: 'Retrieves the current bookmark, or the nearest bookmark at or
-        before a provided timestamp.
+      description: 'Retrieves the current bookmark, or the nearest bookmark at or before a provided timestamp.
 
-        Bookmarks can be used with the restore endpoint to revert the database to
-        a previous point in time.
+        Bookmarks can be used with the restore endpoint to revert the database to a previous point in time.
 
         '
       operationId: d1-time-travel-get-bookmark
@@ -853,9 +812,7 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/d1_database-identifier'
-      - description: An optional ISO 8601 timestamp. If provided, returns the nearest
-          available bookmark at or before this timestamp. If omitted, returns the
-          current bookmark.
+      - description: An optional ISO 8601 timestamp. If provided, returns the nearest available bookmark at or before this timestamp. If omitted, returns the current bookmark.
         in: query
         name: timestamp
         schema:
@@ -892,8 +849,7 @@ paths:
       - D1 Write
   /accounts/{account_id}/d1/database/{database_id}/time_travel/restore:
     post:
-      description: 'Restores a D1 database to a previous point in time either via
-        a bookmark or a timestamp.
+      description: 'Restores a D1 database to a previous point in time either via a bookmark or a timestamp.
 
         '
       operationId: d1-time-travel-restore
@@ -908,14 +864,12 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/d1_database-identifier'
-      - description: A bookmark to restore the database to. Required if `timestamp`
-          is not provided.
+      - description: A bookmark to restore the database to. Required if `timestamp` is not provided.
         in: query
         name: bookmark
         schema:
           $ref: '#/components/schemas/d1_time-travel-bookmark'
-      - description: An ISO 8601 timestamp to restore the database to. Required if
-          `bookmark` is not provided.
+      - description: An ISO 8601 timestamp to restore the database to. Required if `bookmark` is not provided.
         in: query
         name: timestamp
         schema:
@@ -946,82 +900,25 @@ paths:
       - D1
 components:
   schemas:
-    d1_batch-query:
-      description: A single query object or a batch query object
-      oneOf:
-      - $ref: '#/components/schemas/d1_single-query'
-      - properties:
-          batch:
-            items:
-              $ref: '#/components/schemas/d1_single-query'
-            type: array
+    d1_messages:
+      example: []
+      items:
+        properties:
+          code:
+            minimum: 1000
+            type: integer
+          message:
+            type: string
         required:
-        - batch
-        title: multiple queries
+        - code
+        - message
         type: object
-    d1_time-travel-restore-response:
-      description: Response from a time travel restore operation.
-      properties:
-        bookmark:
-          allOf:
-          - $ref: '#/components/schemas/d1_time-travel-bookmark'
-          - description: The new bookmark representing the state of the database after
-              the restore operation.
-        message:
-          description: A message describing the result of the restore operation.
-          example: Database restored successfully
-          type: string
-          x-auditable: true
-        previous_bookmark:
-          allOf:
-          - $ref: '#/components/schemas/d1_time-travel-bookmark'
-          - description: The bookmark representing the state of the database before
-              the restore operation. Can be used to undo the restore if needed.
-      type: object
-    d1_primary-location-hint:
-      description: Specify the region to create the D1 primary, if available. If this
-        option is omitted, the D1 will be created as close as possible to the current
-        user.
-      enum:
-      - wnam
-      - enam
-      - weur
-      - eeur
-      - apac
-      - oc
-      example: wnam
-      type: string
-      x-auditable: true
-    d1_jurisdiction:
-      description: Specify the location to restrict the D1 database to run and store
-        data. If this option is present, the location hint is ignored.
-      enum:
-      - eu
-      - fedramp
-      example: eu
-      type: string
-      x-auditable: true
-    d1_read-replication-details-for-request:
-      description: Configuration for D1 read replication.
-      properties:
-        mode:
-          description: The read replication mode for the database. Use 'auto' to create
-            replicas and allow D1 automatically place them around the world, or 'disabled'
-            to not use any database replicas (it can take a few hours for all replicas
-            to be deleted).
-          enum:
-          - auto
-          - disabled
-          example: auto
-          type: string
-          x-auditable: true
-      required:
-      - mode
-      type: object
-    d1_database-identifier:
-      description: D1 database identifier (UUID).
-      example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-      readOnly: true
+        uniqueItems: true
+      type: array
+    d1_database-name:
+      description: D1 database name.
+      example: my-database
+      pattern: ^[a-zA-Z0-9][a-zA-Z0-9_-]*$
       type: string
       x-auditable: true
     d1_database-details-response:
@@ -1044,57 +941,43 @@ components:
         version:
           $ref: '#/components/schemas/d1_database-version'
       type: object
-    d1_database-name:
-      description: D1 database name.
-      example: my-database
-      pattern: ^[a-zA-Z0-9][a-zA-Z0-9_-]*$
-      type: string
-      x-auditable: true
-    d1_time-travel-timestamp:
-      description: An ISO 8601 timestamp used for time travel operations. The database
-        will be restored to the nearest available bookmark at or before this timestamp.
-      example: '2024-01-15T12:00:00Z'
-      format: date-time
-      type: string
-      x-auditable: true
+    d1_params:
+      example:
+      - firstParam
+      - secondParam
+      items:
+        type: string
+      type: array
     d1_query-meta:
       properties:
         changed_db:
-          description: Denotes if the database has been altered in some way, like
-            deleting rows.
+          description: Denotes if the database has been altered in some way, like deleting rows.
           type: boolean
           x-auditable: true
         changes:
-          description: Rough indication of how many rows were modified by the query,
-            as provided by SQLite's `sqlite3_total_changes()`.
+          description: Rough indication of how many rows were modified by the query, as provided by SQLite's `sqlite3_total_changes()`.
           type: number
           x-auditable: true
         duration:
-          description: The duration of the SQL query execution inside the database.
-            Does not include any network communication.
+          description: The duration of the SQL query execution inside the database. Does not include any network communication.
           type: number
           x-auditable: true
         last_row_id:
-          description: The row ID of the last inserted row in a table with an `INTEGER
-            PRIMARY KEY` as provided by SQLite. Tables created with `WITHOUT ROWID`
-            do not populate this.
+          description: The row ID of the last inserted row in a table with an `INTEGER PRIMARY KEY` as provided by SQLite. Tables created with `WITHOUT ROWID` do not populate this.
           type: number
           x-auditable: true
         rows_read:
-          description: Number of rows read during the SQL query execution, including
-            indices (not all rows are necessarily returned).
+          description: Number of rows read during the SQL query execution, including indices (not all rows are necessarily returned).
           type: number
           x-auditable: true
         rows_written:
-          description: Number of rows written during the SQL query execution, including
-            indices.
+          description: Number of rows written during the SQL query execution, including indices.
           type: number
           x-auditable: true
         served_by_colo:
           $ref: '#/components/schemas/d1_served-by-colo'
         served_by_primary:
-          description: Denotes if the query has been handled by the database primary
-            instance.
+          description: Denotes if the query has been handled by the database primary instance.
           type: boolean
           x-auditable: true
         served_by_region:
@@ -1107,91 +990,16 @@ components:
           description: Various durations for the query.
           properties:
             sql_duration_ms:
-              description: The duration of the SQL query execution inside the database.
-                Does not include any network communication.
+              description: The duration of the SQL query execution inside the database. Does not include any network communication.
               type: number
               x-auditable: true
           type: object
       type: object
-    d1_database-update-request-body:
-      properties:
-        read_replication:
-          $ref: '#/components/schemas/d1_read-replication-details-for-request'
-      required:
-      - read_replication
-      type: object
-    d1_account-identifier:
-      description: Account identifier tag.
-      example: 023e105f4ecef8ad9ca31a8372d0c353
-      maxLength: 32
-      readOnly: true
+    d1_served-by-colo:
+      description: The three letters airport code of the colo that handled the query.
+      example: LHR
       type: string
       x-auditable: true
-    d1_raw-result-response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/d1_query-meta'
-        results:
-          properties:
-            columns:
-              items:
-                type: string
-              type: array
-            rows:
-              items:
-                items:
-                  anyOf:
-                  - type: number
-                  - type: string
-                  - type: object
-                type: array
-              type: array
-          type: object
-        success:
-          type: boolean
-      type: object
-    d1_api-response-common:
-      properties:
-        errors:
-          $ref: '#/components/schemas/d1_messages'
-        messages:
-          $ref: '#/components/schemas/d1_messages'
-        result:
-          type: object
-        success:
-          description: Whether the API call was successful
-          enum:
-          - true
-          example: true
-          type: boolean
-      required:
-      - success
-      - errors
-      - messages
-      - result
-      type: object
-    d1_time-travel-bookmark:
-      description: A bookmark representing a specific state of the database at a specific
-        point in time.
-      example: 00000001-00000002-00004e2f-0a83ea2fceebc654de0640c422be4653
-      type: string
-      x-auditable: true
-    d1_database-update-partial-request-body:
-      properties:
-        read_replication:
-          $ref: '#/components/schemas/d1_read-replication-details-for-request'
-      type: object
-    d1_query-result-response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/d1_query-meta'
-        results:
-          items:
-            type: object
-          type: array
-        success:
-          type: boolean
-      type: object
     d1_api-response-common-failure:
       properties:
         errors:
@@ -1222,36 +1030,52 @@ components:
       - messages
       - result
       type: object
-    d1_database-response:
+    d1_database-update-request-body:
       properties:
-        created_at:
-          $ref: '#/components/schemas/d1_created-at'
-        jurisdiction:
-          $ref: '#/components/schemas/d1_jurisdiction-nullable'
-        name:
-          $ref: '#/components/schemas/d1_database-name'
-        uuid:
-          $ref: '#/components/schemas/d1_database-identifier'
-        version:
-          $ref: '#/components/schemas/d1_database-version'
+        read_replication:
+          $ref: '#/components/schemas/d1_read-replication-details-for-request'
+      required:
+      - read_replication
       type: object
-    d1_served-by-colo:
-      description: The three letters airport code of the colo that handled the query.
-      example: LHR
-      type: string
-      x-auditable: true
+    d1_raw-result-response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/d1_query-meta'
+        results:
+          properties:
+            columns:
+              items:
+                type: string
+              type: array
+            rows:
+              items:
+                items:
+                  anyOf:
+                  - type: number
+                  - type: string
+                  - type: object
+                type: array
+              type: array
+          type: object
+        success:
+          type: boolean
+      type: object
     d1_file-size:
       description: The D1 database's size, in bytes.
       example: 12
       type: number
       x-auditable: true
-    d1_read-replication-details-for-response:
+    d1_database-identifier:
+      description: D1 database identifier (UUID).
+      example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      readOnly: true
+      type: string
+      x-auditable: true
+    d1_read-replication-details-for-request:
       description: Configuration for D1 read replication.
       properties:
         mode:
-          description: The read replication mode for the database. Mode 'auto' denotes
-            that D1 creates replicas and automatically places them around the world.
-            Mode 'disabled' denotes that no database replicas are used.
+          description: The read replication mode for the database. Use 'auto' to create replicas and allow D1 automatically place them around the world, or 'disabled' to not use any database replicas (it can take a few hours for all replicas to be deleted).
           enum:
           - auto
           - disabled
@@ -1261,29 +1085,90 @@ components:
       required:
       - mode
       type: object
+    d1_account-identifier:
+      description: Account identifier tag.
+      example: 023e105f4ecef8ad9ca31a8372d0c353
+      maxLength: 32
+      readOnly: true
+      type: string
+      x-auditable: true
+    d1_created-at:
+      description: Specifies the timestamp the resource was created as an ISO8601 string.
+      example: '2022-11-15T18:25:44.442097Z'
+      format: date-time
+      readOnly: true
+      type: string
+      x-auditable: true
+    d1_time-travel-bookmark:
+      description: A bookmark representing a specific state of the database at a specific point in time.
+      example: 00000001-00000002-00004e2f-0a83ea2fceebc654de0640c422be4653
+      type: string
+      x-auditable: true
+    d1_jurisdiction:
+      description: Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored.
+      enum:
+      - eu
+      - fedramp
+      example: eu
+      type: string
+      x-auditable: true
+    d1_read-replication-details-for-response:
+      description: Configuration for D1 read replication.
+      properties:
+        mode:
+          description: The read replication mode for the database. Mode 'auto' denotes that D1 creates replicas and automatically places them around the world. Mode 'disabled' denotes that no database replicas are used.
+          enum:
+          - auto
+          - disabled
+          example: auto
+          type: string
+          x-auditable: true
+      required:
+      - mode
+      type: object
+    d1_sql:
+      description: Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch.
+      example: SELECT * FROM myTable WHERE field = ? OR field = ?;
+      type: string
+    d1_served-by-region:
+      description: Region location hint of the database instance that handled the query.
+      enum:
+      - WNAM
+      - ENAM
+      - WEUR
+      - EEUR
+      - APAC
+      - OC
+      example: EEUR
+      type: string
+      x-auditable: true
     d1_database-version:
       example: production
       pattern: ^(alpha|beta|production)$
       type: string
       x-auditable: true
-    d1_messages:
-      example: []
-      items:
-        properties:
-          code:
-            minimum: 1000
-            type: integer
-          message:
-            type: string
-        required:
-        - code
-        - message
-        type: object
-        uniqueItems: true
-      type: array
+    d1_api-response-common:
+      properties:
+        errors:
+          $ref: '#/components/schemas/d1_messages'
+        messages:
+          $ref: '#/components/schemas/d1_messages'
+        result:
+          type: object
+        success:
+          description: Whether the API call was successful
+          enum:
+          - true
+          example: true
+          type: boolean
+      required:
+      - success
+      - errors
+      - messages
+      - result
+      type: object
     d1_jurisdiction-nullable:
-      description: Specify the location to restrict the D1 database to run and store
-        data. If this option is present, the location hint is ignored.
+      description: Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored.
       enum:
       - eu
       - fedramp
@@ -1295,25 +1180,35 @@ components:
       example: 12
       type: number
       x-auditable: true
-    d1_served-by-region:
-      description: Region location hint of the database instance that handled the
-        query.
-      enum:
-      - WNAM
-      - ENAM
-      - WEUR
-      - EEUR
-      - APAC
-      - OC
-      example: EEUR
+    d1_time-travel-timestamp:
+      description: An ISO 8601 timestamp used for time travel operations. The database will be restored to the nearest available bookmark at or before this timestamp.
+      example: '2024-01-15T12:00:00Z'
+      format: date-time
       type: string
       x-auditable: true
-    d1_created-at:
-      description: Specifies the timestamp the resource was created as an ISO8601
-        string.
-      example: '2022-11-15T18:25:44.442097Z'
-      format: date-time
-      readOnly: true
+    d1_batch-query:
+      description: A single query object or a batch query object
+      oneOf:
+      - $ref: '#/components/schemas/d1_single-query'
+      - properties:
+          batch:
+            items:
+              $ref: '#/components/schemas/d1_single-query'
+            type: array
+        required:
+        - batch
+        title: multiple queries
+        type: object
+    d1_primary-location-hint:
+      description: Specify the region to create the D1 primary, if available. If this option is omitted, the D1 will be created as close as possible to the current user.
+      enum:
+      - wnam
+      - enam
+      - weur
+      - eeur
+      - apac
+      - oc
+      example: wnam
       type: string
       x-auditable: true
     d1_single-query:
@@ -1327,18 +1222,52 @@ components:
       - sql
       title: single query
       type: object
-    d1_params:
-      example:
-      - firstParam
-      - secondParam
-      items:
-        type: string
-      type: array
-    d1_sql:
-      description: Your SQL query. Supports multiple statements, joined by semicolons,
-        which will be executed as a batch.
-      example: SELECT * FROM myTable WHERE field = ? OR field = ?;
-      type: string
+    d1_query-result-response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/d1_query-meta'
+        results:
+          items:
+            type: object
+          type: array
+        success:
+          type: boolean
+      type: object
+    d1_database-update-partial-request-body:
+      properties:
+        read_replication:
+          $ref: '#/components/schemas/d1_read-replication-details-for-request'
+      type: object
+    d1_time-travel-restore-response:
+      description: Response from a time travel restore operation.
+      properties:
+        bookmark:
+          allOf:
+          - $ref: '#/components/schemas/d1_time-travel-bookmark'
+          - description: The new bookmark representing the state of the database after the restore operation.
+        message:
+          description: A message describing the result of the restore operation.
+          example: Database restored successfully
+          type: string
+          x-auditable: true
+        previous_bookmark:
+          allOf:
+          - $ref: '#/components/schemas/d1_time-travel-bookmark'
+          - description: The bookmark representing the state of the database before the restore operation. Can be used to undo the restore if needed.
+      type: object
+    d1_database-response:
+      properties:
+        created_at:
+          $ref: '#/components/schemas/d1_created-at'
+        jurisdiction:
+          $ref: '#/components/schemas/d1_jurisdiction-nullable'
+        name:
+          $ref: '#/components/schemas/d1_database-name'
+        uuid:
+          $ref: '#/components/schemas/d1_database-identifier'
+        version:
+          $ref: '#/components/schemas/d1_database-version'
+      type: object
   securitySchemes:
     api_email:
       in: header
@@ -1355,3 +1284,6 @@ components:
       in: header
       name: X-Auth-User-Service-Key
       type: apiKey
+externalDocs:
+  description: Cloudflare D1 Documentation
+  url: https://developers.cloudflare.com/d1/
