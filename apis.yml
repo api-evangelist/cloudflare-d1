@@ -6,7 +6,20 @@ description: Cloudflare D1 is a managed, serverless SQLite database service with
   Time Travel point-in-time recovery, global read replication, and seamless integration
   with Cloudflare Workers and Pages.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cloudflare-d1.png
 url: https://raw.githubusercontent.com/api-evangelist/cloudflare-d1/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -20,30 +33,20 @@ tags:
   - Cloudflare
   - Workers
 apis:
-  - aid: cloudflare-d1:cloudflare-d1-api
-    name: Cloudflare D1 API
-    description: REST API for managing and querying Cloudflare D1 serverless SQLite
-      databases. Provides endpoints for database lifecycle management (create, list,
-      get, delete), SQL query execution (query and raw modes), data import/export,
-      and Time Travel point-in-time restore operations.
-    humanURL: https://developers.cloudflare.com/d1/
-    baseURL: https://api.cloudflare.com/client/v4
-    tags:
-      - Database
-      - SQLite
-      - Serverless
-      - SQL
-      - Edge
-    properties:
-      - type: Documentation
-        url: https://developers.cloudflare.com/d1/
-      - type: OpenAPI
-        url: https://developers.cloudflare.com/api/resources/d1/subresources/database/
-      - type: Authentication
-        url: https://developers.cloudflare.com/d1/get-started/
-    contact:
-      - FN: Cloudflare Support
-        url: https://developers.cloudflare.com/support/
+- aid: cloudflare-d1:cloudflare-d1-d1-api
+  name: Cloudflare D1 D1 API
+  description: The D1 API from Cloudflare D1 — 8 operation(s) for d1.
+  humanURL: https://developers.cloudflare.com/d1/
+  baseURL: https://api.cloudflare.com/client/v4
+  tags:
+  - D1
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudflare-d1-d1-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cloudflare.com/d1/
+  - type: Authentication
+    url: https://developers.cloudflare.com/d1/get-started/
 common:
   - type: AgenticAccess
     url: agentic-access/cloudflare-d1-agentic-access.yml
