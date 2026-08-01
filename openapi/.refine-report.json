@@ -1,0 +1,14 @@
+{
+  "provider": "cloudflare-d1",
+  "sources": [
+    "cloudflare-d1-d1-api-openapi.yml"
+  ],
+  "outputs": [
+    "cloudflare-d1-d1-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
