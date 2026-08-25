@@ -10,12 +10,9 @@
     },
     {
       "source": "https://www.linkedin.com/company/cloudflare/",
-      "feed_url": "https://www.linkedin.com/company/cloudflare/",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-08-15T12:22:01Z",
-  "post_count": 67
+  "fetched": "2026-08-22T20:20:02Z",
+  "post_count": 71
 }
