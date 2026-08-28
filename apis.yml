@@ -6,6 +6,18 @@ description: Cloudflare D1 is a managed, serverless SQLite database service with
   Time Travel point-in-time recovery, global read replication, and seamless integration
   with Cloudflare Workers and Pages.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
