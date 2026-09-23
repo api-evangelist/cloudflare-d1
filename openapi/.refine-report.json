@@ -1,7 +1,7 @@
 {
   "provider": "cloudflare-d1",
   "sources": [
-    "cloudflare-d1-d1-api-openapi.yml"
+    "_original/cloudflare-d1-cloudflare-d1-api-openapi.yml"
   ],
   "outputs": [
     "cloudflare-d1-d1-api-openapi.yml"
@@ -9,6 +9,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cloudflare-d1-cloudflare-d1-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "cloudflare-d1-cloudflare-d1-api-openapi.yml: declared missing tag: D1",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cloudflare-d1-d1-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
