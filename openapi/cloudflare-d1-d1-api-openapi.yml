@@ -893,81 +893,98 @@ paths:
       - D1
 components:
   schemas:
-    d1_time-travel-restore-response:
-      description: Response from a time travel restore operation.
-      properties:
-        bookmark:
-          allOf:
-          - $ref: '#/components/schemas/d1_time-travel-bookmark'
-          - description: The new bookmark representing the state of the database after the restore operation.
-        message:
-          description: A message describing the result of the restore operation.
-          example: Database restored successfully
-          type: string
-          x-auditable: true
-        previous_bookmark:
-          allOf:
-          - $ref: '#/components/schemas/d1_time-travel-bookmark'
-          - description: The bookmark representing the state of the database before the restore operation. Can be used to undo the restore if needed.
-      type: object
-    d1_created-at:
-      description: Specifies the timestamp the resource was created as an ISO8601 string.
-      example: '2022-11-15T18:25:44.442097Z'
-      format: date-time
-      readOnly: true
+    d1_params:
+      example:
+      - firstParam
+      - secondParam
+      items:
+        type: string
+      type: array
+    d1_database-name:
+      description: D1 database name.
+      example: my-database
+      pattern: ^[a-zA-Z0-9][a-zA-Z0-9_-]*$
       type: string
       x-auditable: true
-    d1_raw-result-response:
+    d1_query-result-response:
       properties:
         meta:
           $ref: '#/components/schemas/d1_query-meta'
         results:
-          properties:
-            columns:
-              items:
-                type: string
-              type: array
-            rows:
-              items:
-                items:
-                  anyOf:
-                  - type: number
-                  - type: string
-                  - type: object
-                type: array
-              type: array
-          type: object
+          items:
+            type: object
+          type: array
         success:
           type: boolean
       type: object
-    d1_batch-query:
-      description: A single query object or a batch query object
-      oneOf:
-      - $ref: '#/components/schemas/d1_single-query'
-      - properties:
-          batch:
-            items:
-              $ref: '#/components/schemas/d1_single-query'
-            type: array
-        required:
-        - batch
-        title: multiple queries
-        type: object
-    d1_jurisdiction-nullable:
-      description: Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored.
-      enum:
-      - eu
-      - fedramp
-      example: eu
-      type:
-      - string
-      - 'null'
+    d1_database-update-request-body:
+      properties:
+        read_replication:
+          $ref: '#/components/schemas/d1_read-replication-details-for-request'
+      required:
+      - read_replication
+      type: object
+    d1_database-details-response:
+      description: The details of the D1 database.
+      properties:
+        created_at:
+          $ref: '#/components/schemas/d1_created-at'
+        file_size:
+          $ref: '#/components/schemas/d1_file-size'
+        jurisdiction:
+          $ref: '#/components/schemas/d1_jurisdiction-nullable'
+        name:
+          $ref: '#/components/schemas/d1_database-name'
+        num_tables:
+          $ref: '#/components/schemas/d1_table-count'
+        read_replication:
+          $ref: '#/components/schemas/d1_read-replication-details-for-response'
+        uuid:
+          $ref: '#/components/schemas/d1_database-identifier'
+        version:
+          $ref: '#/components/schemas/d1_database-version'
+      type: object
+    d1_database-identifier:
+      description: D1 database identifier (UUID).
+      example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      readOnly: true
+      type: string
       x-auditable: true
-    d1_read-replication-details-for-response:
+    d1_database-update-partial-request-body:
+      properties:
+        read_replication:
+          $ref: '#/components/schemas/d1_read-replication-details-for-request'
+      type: object
+    d1_messages:
+      example: []
+      items:
+        properties:
+          code:
+            minimum: 1000
+            type: integer
+          message:
+            type: string
+        required:
+        - code
+        - message
+        type: object
+        uniqueItems: true
+      type: array
+    d1_sql:
+      description: Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch.
+      example: SELECT * FROM myTable WHERE field = ? OR field = ?;
+      type: string
+    d1_time-travel-timestamp:
+      description: An ISO 8601 timestamp used for time travel operations. The database will be restored to the nearest available bookmark at or before this timestamp.
+      example: '2024-01-15T12:00:00Z'
+      format: date-time
+      type: string
+      x-auditable: true
+    d1_read-replication-details-for-request:
       description: Configuration for D1 read replication.
       properties:
         mode:
-          description: The read replication mode for the database. Mode 'auto' denotes that D1 creates replicas and automatically places them around the world. Mode 'disabled' denotes that no database replicas are used.
+          description: The read replication mode for the database. Use 'auto' to create replicas and allow D1 automatically place them around the world, or 'disabled' to not use any database replicas (it can take a few hours for all replicas to be deleted).
           enum:
           - auto
           - disabled
@@ -977,6 +994,22 @@ components:
       required:
       - mode
       type: object
+    d1_served-by-region:
+      description: Region location hint of the database instance that handled the query.
+      enum:
+      - WNAM
+      - ENAM
+      - WEUR
+      - EEUR
+      - APAC
+      - OC
+      example: EEUR
+      type: string
+      x-auditable: true
+    d1_table-count:
+      example: 12
+      type: number
+      x-auditable: true
     d1_query-meta:
       properties:
         changed_db:
@@ -1024,61 +1057,6 @@ components:
               x-auditable: true
           type: object
       type: object
-    d1_database-name:
-      description: D1 database name.
-      example: my-database
-      pattern: ^[a-zA-Z0-9][a-zA-Z0-9_-]*$
-      type: string
-      x-auditable: true
-    d1_database-identifier:
-      description: D1 database identifier (UUID).
-      example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-      readOnly: true
-      type: string
-      x-auditable: true
-    d1_database-response:
-      properties:
-        created_at:
-          $ref: '#/components/schemas/d1_created-at'
-        jurisdiction:
-          $ref: '#/components/schemas/d1_jurisdiction-nullable'
-        name:
-          $ref: '#/components/schemas/d1_database-name'
-        uuid:
-          $ref: '#/components/schemas/d1_database-identifier'
-        version:
-          $ref: '#/components/schemas/d1_database-version'
-      type: object
-    d1_params:
-      example:
-      - firstParam
-      - secondParam
-      items:
-        type: string
-      type: array
-    d1_table-count:
-      example: 12
-      type: number
-      x-auditable: true
-    d1_read-replication-details-for-request:
-      description: Configuration for D1 read replication.
-      properties:
-        mode:
-          description: The read replication mode for the database. Use 'auto' to create replicas and allow D1 automatically place them around the world, or 'disabled' to not use any database replicas (it can take a few hours for all replicas to be deleted).
-          enum:
-          - auto
-          - disabled
-          example: auto
-          type: string
-          x-auditable: true
-      required:
-      - mode
-      type: object
-    d1_file-size:
-      description: The D1 database's size, in bytes.
-      example: 12
-      type: number
-      x-auditable: true
     d1_api-response-common-failure:
       properties:
         errors:
@@ -1110,94 +1088,32 @@ components:
       - messages
       - result
       type: object
-    d1_database-update-partial-request-body:
-      properties:
-        read_replication:
-          $ref: '#/components/schemas/d1_read-replication-details-for-request'
-      type: object
-    d1_database-version:
-      example: production
-      pattern: ^(alpha|beta|production)$
-      type: string
-      x-auditable: true
-    d1_query-result-response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/d1_query-meta'
-        results:
-          items:
-            type: object
-          type: array
-        success:
-          type: boolean
-      type: object
-    d1_served-by-colo:
-      description: The three letters airport code of the colo that handled the query.
-      example: LHR
-      type: string
-      x-auditable: true
-    d1_single-query:
-      description: A single query with or without parameters
-      properties:
-        params:
-          $ref: '#/components/schemas/d1_params'
-        sql:
-          $ref: '#/components/schemas/d1_sql'
-      required:
-      - sql
-      title: single query
-      type: object
-    d1_account-identifier:
-      description: Account identifier tag.
-      example: 023e105f4ecef8ad9ca31a8372d0c353
-      maxLength: 32
-      readOnly: true
-      type: string
-      x-auditable: true
-    d1_messages:
-      example: []
-      items:
-        properties:
-          code:
-            minimum: 1000
-            type: integer
-          message:
-            type: string
-        required:
-        - code
-        - message
-        type: object
-        uniqueItems: true
-      type: array
-    d1_served-by-region:
-      description: Region location hint of the database instance that handled the query.
+    d1_jurisdiction:
+      description: Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored.
       enum:
-      - WNAM
-      - ENAM
-      - WEUR
-      - EEUR
-      - APAC
-      - OC
-      example: EEUR
+      - eu
+      - fedramp
+      example: eu
       type: string
       x-auditable: true
-    d1_database-update-request-body:
+    d1_database-response:
       properties:
-        read_replication:
-          $ref: '#/components/schemas/d1_read-replication-details-for-request'
-      required:
-      - read_replication
+        created_at:
+          $ref: '#/components/schemas/d1_created-at'
+        jurisdiction:
+          $ref: '#/components/schemas/d1_jurisdiction-nullable'
+        name:
+          $ref: '#/components/schemas/d1_database-name'
+        uuid:
+          $ref: '#/components/schemas/d1_database-identifier'
+        version:
+          $ref: '#/components/schemas/d1_database-version'
       type: object
-    d1_time-travel-timestamp:
-      description: An ISO 8601 timestamp used for time travel operations. The database will be restored to the nearest available bookmark at or before this timestamp.
-      example: '2024-01-15T12:00:00Z'
-      format: date-time
-      type: string
+    d1_file-size:
+      description: The D1 database's size, in bytes.
+      example: 12
+      type: number
       x-auditable: true
-    d1_sql:
-      description: Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch.
-      example: SELECT * FROM myTable WHERE field = ? OR field = ?;
-      type: string
     d1_primary-location-hint:
       description: Specify the region to create the D1 primary, if available. If this option is omitted, the D1 will be created as close as possible to the current user.
       enum:
@@ -1210,34 +1126,104 @@ components:
       example: wnam
       type: string
       x-auditable: true
-    d1_database-details-response:
-      description: The details of the D1 database.
-      properties:
-        created_at:
-          $ref: '#/components/schemas/d1_created-at'
-        file_size:
-          $ref: '#/components/schemas/d1_file-size'
-        jurisdiction:
-          $ref: '#/components/schemas/d1_jurisdiction-nullable'
-        name:
-          $ref: '#/components/schemas/d1_database-name'
-        num_tables:
-          $ref: '#/components/schemas/d1_table-count'
-        read_replication:
-          $ref: '#/components/schemas/d1_read-replication-details-for-response'
-        uuid:
-          $ref: '#/components/schemas/d1_database-identifier'
-        version:
-          $ref: '#/components/schemas/d1_database-version'
-      type: object
-    d1_jurisdiction:
+    d1_created-at:
+      description: Specifies the timestamp the resource was created as an ISO8601 string.
+      example: '2022-11-15T18:25:44.442097Z'
+      format: date-time
+      readOnly: true
+      type: string
+      x-auditable: true
+    d1_time-travel-bookmark:
+      description: A bookmark representing a specific state of the database at a specific point in time.
+      example: 00000001-00000002-00004e2f-0a83ea2fceebc654de0640c422be4653
+      type: string
+      x-auditable: true
+    d1_jurisdiction-nullable:
       description: Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored.
       enum:
       - eu
       - fedramp
       example: eu
+      type:
+      - string
+      - 'null'
+      x-auditable: true
+    d1_time-travel-restore-response:
+      description: Response from a time travel restore operation.
+      properties:
+        bookmark:
+          allOf:
+          - $ref: '#/components/schemas/d1_time-travel-bookmark'
+          - description: The new bookmark representing the state of the database after the restore operation.
+        message:
+          description: A message describing the result of the restore operation.
+          example: Database restored successfully
+          type: string
+          x-auditable: true
+        previous_bookmark:
+          allOf:
+          - $ref: '#/components/schemas/d1_time-travel-bookmark'
+          - description: The bookmark representing the state of the database before the restore operation. Can be used to undo the restore if needed.
+      type: object
+    d1_account-identifier:
+      description: Account identifier tag.
+      example: 023e105f4ecef8ad9ca31a8372d0c353
+      maxLength: 32
+      readOnly: true
       type: string
       x-auditable: true
+    d1_batch-query:
+      description: A single query object or a batch query object
+      oneOf:
+      - $ref: '#/components/schemas/d1_single-query'
+      - properties:
+          batch:
+            items:
+              $ref: '#/components/schemas/d1_single-query'
+            type: array
+        required:
+        - batch
+        title: multiple queries
+        type: object
+    d1_single-query:
+      description: A single query with or without parameters
+      properties:
+        params:
+          $ref: '#/components/schemas/d1_params'
+        sql:
+          $ref: '#/components/schemas/d1_sql'
+      required:
+      - sql
+      title: single query
+      type: object
+    d1_database-version:
+      example: production
+      pattern: ^(alpha|beta|production)$
+      type: string
+      x-auditable: true
+    d1_raw-result-response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/d1_query-meta'
+        results:
+          properties:
+            columns:
+              items:
+                type: string
+              type: array
+            rows:
+              items:
+                items:
+                  anyOf:
+                  - type: number
+                  - type: string
+                  - type: object
+                type: array
+              type: array
+          type: object
+        success:
+          type: boolean
+      type: object
     d1_api-response-common:
       properties:
         errors:
@@ -1258,9 +1244,23 @@ components:
       - messages
       - result
       type: object
-    d1_time-travel-bookmark:
-      description: A bookmark representing a specific state of the database at a specific point in time.
-      example: 00000001-00000002-00004e2f-0a83ea2fceebc654de0640c422be4653
+    d1_read-replication-details-for-response:
+      description: Configuration for D1 read replication.
+      properties:
+        mode:
+          description: The read replication mode for the database. Mode 'auto' denotes that D1 creates replicas and automatically places them around the world. Mode 'disabled' denotes that no database replicas are used.
+          enum:
+          - auto
+          - disabled
+          example: auto
+          type: string
+          x-auditable: true
+      required:
+      - mode
+      type: object
+    d1_served-by-colo:
+      description: The three letters airport code of the colo that handled the query.
+      example: LHR
       type: string
       x-auditable: true
   securitySchemes:
