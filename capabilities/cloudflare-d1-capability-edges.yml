@@ -1,0 +1,25 @@
+slug: cloudflare-d1
+provider: Cloudflare D1
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: D1
+  spec_file: cloudflare-d1-d1-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: '"REST API for managing and querying Cloudflare D1 serverless SQLite databases"; "d1-create-database
+    — Create D1 Database", "d1-time-travel-restore — Restore D1 Database to a bookmark or point in time"'
+  reason: Database instance lifecycle, query execution and point-in-time restore on a managed cloud datastore
+    are infrastructure (storage/compute) management operations.
