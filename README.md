@@ -66,41 +66,176 @@
 
 Cloudflare D1 is a managed, serverless SQLite database service with a REST API for querying D1 databases, executing SQL statements, listing databases, and managing database instances at the edge. D1 offers SQLite semantics, built-in Time Travel point-in-time recovery, global read replication, and seamless integration with Cloudflare Workers and Pages.
 
-## Links
+**Areas:** Database · SQLite · Serverless · Edge Computing · SQL · Cloudflare · Workers
 
-- **Website**: https://www.cloudflare.com/developer-platform/d1/
-- **Documentation**: https://developers.cloudflare.com/d1/
-- **API Reference**: https://developers.cloudflare.com/api/resources/d1/
-- **Pricing**: https://developers.cloudflare.com/d1/platform/pricing/
-- **Limits**: https://developers.cloudflare.com/d1/platform/limits/
-- **Status**: https://www.cloudflarestatus.com/
-- **Blog**: https://blog.cloudflare.com/
-- **GitHub**: https://github.com/cloudflare
-- **TypeScript SDK**: https://github.com/cloudflare/cloudflare-typescript
-- **Release Notes**: https://developers.cloudflare.com/d1/platform/release-notes/
+## Cloudflare D1 on APIs.io
 
-## APIs
+Everything profiled for Cloudflare D1 is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cloudflare-d1/](https://apis.io/providers/cloudflare-d1/)** — or go straight to one of the APIs or properties below.
 
-- **Cloudflare D1 API** — REST API for managing and querying D1 serverless SQLite databases. Base URL: `https://api.cloudflare.com/client/v4`
+### APIs (1)
 
-### Key Endpoints
+- [Cloudflare D1 D1 API](https://apis.io/apis/cloudflare-d1/cloudflare-d1-d1-api/) — The D1 API from Cloudflare D1 — 8 operation(s) for d1.
 
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/accounts/{account_id}/d1/database` | List all D1 databases |
-| POST | `/accounts/{account_id}/d1/database` | Create a new D1 database |
-| GET | `/accounts/{account_id}/d1/database/{database_id}` | Get a specific database |
-| DELETE | `/accounts/{account_id}/d1/database/{database_id}` | Delete a database |
-| POST | `/accounts/{account_id}/d1/database/{database_id}/query` | Execute SQL query (returns objects) |
-| POST | `/accounts/{account_id}/d1/database/{database_id}/raw` | Execute SQL query (returns arrays) |
-| POST | `/accounts/{account_id}/d1/database/{database_id}/export` | Export database as SQL |
-| POST | `/accounts/{account_id}/d1/database/{database_id}/import` | Import SQL into database |
-| GET | `/accounts/{account_id}/d1/database/{database_id}/time_travel/bookmark` | Get Time Travel bookmark |
-| POST | `/accounts/{account_id}/d1/database/{database_id}/time_travel/restore` | Restore to point in time |
+### Published properties
 
-## Files
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- `apis.yml` — APIs.json 0.19 index for this provider
-- `plans/cloudflare-d1-plans-pricing.yml` — API Commons Plans 0.1 pricing details
-- `rate-limits/cloudflare-d1-rate-limits.yml` — API Commons Rate Limits 0.1
-- `finops/cloudflare-d1-finops.yml` — FinOps Framework 1.0 FOCUS-aligned cost management
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Cloudflare D1 Agentic Access](https://apis.io/agentic-access/cloudflare-d1/cloudflare-d1-agentic-access/)
+
+#### JSON Schema (31)
+
+The data models the API reads and writes.
+
+- [D1 Account Identifier](https://apis.io/schemas/cloudflare-d1/d1_account-identifier/)
+- [D1 Api Response Common](https://apis.io/schemas/cloudflare-d1/d1_api-response-common/)
+- [D1 Api Response Common Failure](https://apis.io/schemas/cloudflare-d1/d1_api-response-common-failure/)
+- [D1 Batch Query](https://apis.io/schemas/cloudflare-d1/d1_batch-query/)
+- [D1 Created At](https://apis.io/schemas/cloudflare-d1/d1_created-at/)
+- [D1 Database Details Response](https://apis.io/schemas/cloudflare-d1/d1_database-details-response/)
+- [D1 Database Identifier](https://apis.io/schemas/cloudflare-d1/d1_database-identifier/)
+- [D1 Database Name](https://apis.io/schemas/cloudflare-d1/d1_database-name/)
+- [D1 Database Response](https://apis.io/schemas/cloudflare-d1/d1_database-response/)
+- [D1 Database Update Partial Request Body](https://apis.io/schemas/cloudflare-d1/d1_database-update-partial-request-body/)
+- [D1 Database Update Request Body](https://apis.io/schemas/cloudflare-d1/d1_database-update-request-body/)
+- [D1 Database Version](https://apis.io/schemas/cloudflare-d1/d1_database-version/)
+- [D1 File Size](https://apis.io/schemas/cloudflare-d1/d1_file-size/)
+- [D1 Jurisdiction](https://apis.io/schemas/cloudflare-d1/d1_jurisdiction/)
+- [D1 Jurisdiction Nullable](https://apis.io/schemas/cloudflare-d1/d1_jurisdiction-nullable/)
+- [D1 Messages](https://apis.io/schemas/cloudflare-d1/d1_messages/)
+- [D1 Params](https://apis.io/schemas/cloudflare-d1/d1_params/)
+- [D1 Primary Location Hint](https://apis.io/schemas/cloudflare-d1/d1_primary-location-hint/)
+- [D1 Query Meta](https://apis.io/schemas/cloudflare-d1/d1_query-meta/)
+- [D1 Query Result Response](https://apis.io/schemas/cloudflare-d1/d1_query-result-response/)
+- [D1 Raw Result Response](https://apis.io/schemas/cloudflare-d1/d1_raw-result-response/)
+- [D1 Read Replication Details For Request](https://apis.io/schemas/cloudflare-d1/d1_read-replication-details-for-request/)
+- [D1 Read Replication Details For Response](https://apis.io/schemas/cloudflare-d1/d1_read-replication-details-for-response/)
+- [D1 Served By Colo](https://apis.io/schemas/cloudflare-d1/d1_served-by-colo/)
+- [D1 Served By Region](https://apis.io/schemas/cloudflare-d1/d1_served-by-region/)
+- …and 6 more published on APIs.io
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Cloudflare D1 Context](https://apis.io/jsonld/cloudflare-d1/cloudflare-d1-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Cloudflare D1 Vocabulary](https://apis.io/vocabularies/cloudflare-d1/cloudflare-d1-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [D1 Create Database](https://apis.io/examples/cloudflare-d1/d1-create-database/)
+- [D1 List Databases](https://apis.io/examples/cloudflare-d1/d1-list-databases/)
+- [D1 Query Database](https://apis.io/examples/cloudflare-d1/d1-query-database/)
+- [D1 Time Travel Restore](https://apis.io/examples/cloudflare-d1/d1-time-travel-restore/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Cloudflare D1 API](https://apis.io/collections/cloudflare-d1/open-cloudflare-d1-d1-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Cloudflare D1 — jsonschema rules](https://apis.io/rules/cloudflare-d1/cloudflare-d1-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cloudflare D1 Authentication](https://apis.io/security/cloudflare-d1/cloudflare-d1-authentication/)
+- [Cloudflare D1 Domain Security](https://apis.io/security/cloudflare-d1/cloudflare-d1-domain-security/)
+- [Cloudflare D1 Vulnerability Disclosure](https://apis.io/security/cloudflare-d1/cloudflare-d1-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cloudflare D1 Plans Pricing](https://apis.io/plans/cloudflare-d1/cloudflare-d1-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cloudflare D1 Rate Limits](https://apis.io/rate-limits/cloudflare-d1/cloudflare-d1-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cloudflare D1 Finops](https://apis.io/finops/cloudflare-d1/cloudflare-d1-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.cloudflare.com/developer-platform/d1/)
+- [Documentation](https://developers.cloudflare.com/d1/)
+- [Pricing](https://developers.cloudflare.com/d1/platform/pricing/)
+- [Changelog](https://developers.cloudflare.com/d1/platform/release-notes/)
+- [Blog](https://blog.cloudflare.com/)
+- [Status](https://www.cloudflarestatus.com/)
+
+## API Evangelist rating
+
+**Kin Score 37.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 57.9 |
+| Contract governance | 9.8 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 15.8 |
+
+**Agent readiness 27.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cloudflare-d1/](https://apis.io/providers/cloudflare-d1/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cloudflare D1: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cloudflare-d1/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
